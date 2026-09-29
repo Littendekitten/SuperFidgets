@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <!-- Deze regel is cruciaal voor mobiele scaling! -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SuperFidgets | Snelle Bezorging</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <!-- Login Screen -->
+  <div class="auth-overlay hidden" id="login-screen">
+    <div class="auth-card">
+      <h2>SuperFidgets</h2>
+      <p id="txt-login-subtitle">Log in met Google om verder te gaan</p>
+      <button class="btn google-btn" id="google-login-btn">Inloggen met Google</button>
+    </div>
+  </div>
+
+  <!-- Onboarding Screen -->
+  <div class="auth-overlay hidden" id="onboarding-screen">
+    <div class="auth-card">
+      <h2 id="txt-welcome">Welkom!</h2>
+      <div class="form-group">
+        <label id="txt-choose-lang">Kies je taal:</label>
+        <select id="language-select">
+          <option value="nl">Nederlands</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label id="txt-username-label">Gebruikersnaam (max 12):</label>
+        <input type="text" id="username-input" maxlength="12" placeholder="Jouw naam" />
+      </div>
+      <button class="btn btn-primary" id="save-profile-btn">Aan de slag</button>
+    </div>
+  </div>
+
+  <!-- Main App Container -->
+  <div id="app-container" class="hidden">
+    <header>
+      <div class="nav-container">
+        <a href="/" class="logo">Super<span>Fidgets</span></a>
+        <div class="nav-actions">
+          <span id="display-username" class="desktop-only"></span>
+          <button class="btn btn-icon" id="open-settings-btn">⚙️</button>
+          <button class="btn btn-outline btn-small" id="logout-btn">Uitloggen</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <section class="hero">
+        <h1 id="txt-hero-title">Snelle Bezorging</h1>
+        <p id="txt-hero-sub">Selecteer een snack om direct via Tikkie te bestellen!</p>
+      </section>
+
+      <h2 class="section-title" id="txt-products-title">Onze Producten</h2>
+
+      <!-- Responsive Zoekbalk & Filters -->
+      <div class="filter-bar">
+        <input type="text" id="search-input" class="search-input" placeholder="Zoek snacks, snoep, drinken..." />
+        
+        <div class="category-buttons">
+          <button class="btn btn-outline filter-btn active" data-category="all" id="btn-cat-all">Alles</button>
+          <button class="btn btn-outline filter-btn" data-category="sweets" id="btn-cat-sweets">Snoep</button>
+          <button class="btn btn-outline filter-btn" data-category="snacks" id="btn-cat-snacks">Snacks</button>
+          <button class="btn btn-outline filter-btn" data-category="drinks" id="btn-cat-drinks">Dranken</button>
+        </div>
+      </div>
+
+      <div class="grid" id="product-grid">Laden...</div>
+
+      <h2 class="section-title" id="txt-locations-title">Onze Locaties</h2>
+      <div class="grid" id="locations-grid">Laden...</div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-content">
+      <h3 id="txt-checkout-title">Overzicht</h3>
+      <p class="modal-spacing"><span id="modal-item-name" class="font-bold"></span></p>
+      <p><span id="txt-price-label">Prijs:</span> <span id="modal-item-price"></span> <span id="txt-shipping-info" class="text-sm">(+ €1,00 bezorging)</span></p>
+      <h3 class="modal-total"><span id="txt-total-label">Totaal:</span> <span id="modal-total-price"></span></h3>
+
+      <!-- Bezorglocatie Invoerveld -->
+      <div class="form-group checkout-form">
+        <label id="txt-delivery-label">Bezorglocatie / Adres:</label>
+        <input type="text" id="delivery-address-input" class="input-full" placeholder="bijv. Lokaal 12, Kantine..." />
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-outline" id="modal-cancel">Annuleren</button>
+        <button class="btn btn-tikkie" id="modal-confirm">Betaal via Tikkie</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-content">
+      <h3 id="txt-settings-title" class="modal-title">Instellingen</h3>
+      
+      <div class="form-group">
+        <label id="txt-theme-label">Thema:</label>
+        <select id="theme-select" class="input-full">
+          <option value="default">Standaard</option>
+          <option value="dark">Dark Mode</option>
+          <option value="kitacat">KitaCat Special</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="txt-lang-label">Taal / Language:</label>
+        <select id="settings-language-select" class="input-full">
+          <option value="nl">Nederlands</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-outline" id="close-settings-btn">Sluiten</button>
+        <button class="btn btn-primary" id="save-settings-btn">Opslaan</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
